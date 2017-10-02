@@ -1,0 +1,22 @@
+%section.new-review.container.mt-4
+  %h3 Write a Review
+  %h5 <a href="">The French Laundry</a>
+  %address
+    1234 Main St.<br>
+    San Francisco, CA 94115<br>
+    (415) 123-4567
+  %form
+    %fieldset
+      .form-group
+        %select#rating.form-control.w-25(type='text' placeholder='star rating')
+          %option Rating
+          %option 1 Star
+          %option 2 Stars
+          %option 3 Stars
+          %option 4 Stars
+          %option 5 Stars
+      .form-group
+        %textarea.form-control(placeholder='Your review' rows="10")
+      .form-group
+        %input.form-control.btn.register-button(type='submit' value='Post Review')
+  %p

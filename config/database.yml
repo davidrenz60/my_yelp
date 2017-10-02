@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: my_yelp_development
+
+test:
+  <<: *default
+  database: my_yelp_test
+
+production:
+  <<: *default
+  database: my_yelp_production
+  username: my_yelp
+  password: <%= ENV['MY_YELP_DATABASE_PASSWORD'] %>
