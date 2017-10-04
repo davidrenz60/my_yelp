@@ -1,0 +1,21 @@
+%section.container.centered-form.mt-4
+  %h3 Sign Up for Yelp
+  %p
+    %strong Connect with great local businesses
+  = form_for @user do |f|
+    %fieldset
+      .form-row
+        .form-group.col
+          = f.text_field :first_name, class: "form-control", placeholder: "First Name"
+        .form-group.col
+          = f.text_field :last_name, class: "form-control", placeholder: "Last Name"
+      .form-group
+        = f.email_field :email, class: "form-control", placeholder: "Email"
+      .form-group
+        = f.password_field :password, class: "form-control", placeholder: "Password"
+      .form-group
+        = f.submit "Sign up", class: "btn register-button form-control"
+  %p
+    %small Already on Yelp? <a href=''>Log in</a>
+
+

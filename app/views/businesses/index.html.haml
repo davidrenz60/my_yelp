@@ -1,0 +1,26 @@
+%section.content-header
+  .container
+    %h3 Showing All Businesses
+%section.content
+  .container
+    %ul
+      - @businesses.each_with_index do |business, idx|
+        %li
+          .row
+            .col-md-8
+              %h4
+                = (idx + 1).to_s + "."
+                = link_to business.name, ""
+              .star-rating-small.rating-4-small
+              %span.ml-1 #{business.reviews.count} reviews
+            .col-md-4
+              %address
+                #{business.address}<br>
+                #{business.city}, #{business.state} #{business.zip_code}<br>
+                #{business.phone_number}
+          - if business.reviews.any?
+            %p
+              = business.reviews.last.preview
+              = link_to "read more", ""
+          - else
+            %p No reviews yet.

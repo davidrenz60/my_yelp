@@ -1,0 +1,2 @@
+Fabricator(:business) do
+end

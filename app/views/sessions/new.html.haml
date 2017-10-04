@@ -1,0 +1,14 @@
+%section.container.centered-form.mt-4
+  %h3 Log In to Yelp
+  %p
+    %small
+      %strong New to Yelp?
+      = link_to "Sign up", ""
+  = form_tag "/login" do
+    %fieldset
+      .form-group
+        = text_field_tag :email, nil, class: "form-control", placeholder: "Email"
+      .form-group
+        = password_field_tag :email, nil, class: "form-control", placeholder: "Password"
+      .form-group
+        = submit_tag "Log In", class: "btn register-button form-control"
