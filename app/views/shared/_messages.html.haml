@@ -1,0 +1,6 @@
+- if flash.keys.any?
+  - flash.keys.each do |key|
+    %div.alert.alert-dismissable.fade.show(class="alert-#{key}" role="alert")
+      %button.close(type="button" data-dismiss="alert" aria-label="Close")
+        %span(aria-hidden="true") &times;
+      %p= flash[key]

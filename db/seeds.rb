@@ -10,4 +10,4 @@ Review.create(business: french_laundry, body: "Lorem ipsum dolor sit amet, conse
 
 Review.create(business: saison, body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In malesuada tempus eros eget feugiat. In at malesuada augue. Praesent tristique gravida turpis ut facilisis. Sed id ornare leo. Morbi mattis ullamcorper suscipit. Morbi eget vehicula.")
 
-
+jon = User.create(first_name: "Jon", last_name: "Doe", email: "jon@test.com", password: "jon")
