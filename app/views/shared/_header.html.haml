@@ -16,4 +16,4 @@
       %a.nav-link.dropdown-toggle(data-toggle="dropdown" href="#" role="button") Jon Doe
       .dropdown-menu
         %a.dropdown-item(href="") Add a New Business
-        %a.dropdown-item(href="") Log Out
+        = link_to "Log Out", logout_path, method: "post", class: "dropdown-item"

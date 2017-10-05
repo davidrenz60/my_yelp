@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    redirect_to home_path if logged_in?
   end
 
   def create
@@ -13,6 +14,11 @@ class SessionsController < ApplicationController
       flash[:danger] = "Invalid email or password. Please try again."
       redirect_to login_path
     end
+  end
 
+  def destroy
+    flash[:success] = "You have logged out."
+    session[:user_id] = nil
+    redirect_to login_path
   end
 end
