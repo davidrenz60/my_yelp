@@ -3,17 +3,20 @@
     %li
       %a(href='')
         %img(src='/images/logo.png')
-    %li
-      %form.form-inline
-        %input.form-control.search-bar(type="text" placeholder="Find")
-        %button.btn.search-button(type="submit")
-          %i.fa.fa-search
-    %li
-      %a(href="") Reviews
-    %li
-      %a(href="") Businesses
-    %li.nav-item.dropdown
-      %a.nav-link.dropdown-toggle(data-toggle="dropdown" href="#" role="button") Jon Doe
-      .dropdown-menu
-        %a.dropdown-item(href="") Add a New Business
-        = link_to "Log Out", logout_path, method: "post", class: "dropdown-item"
+    - if logged_in?
+      %li
+        %form.form-inline
+          %input.form-control.search-bar(type="text" placeholder="Find")
+          %button.btn.search-button(type="submit")
+            %i.fa.fa-search
+      %li
+        = link_to "Businesses", home_path
+      %li
+        %a(href="") Reviews
+      %li.nav-item.dropdown
+        %a.nav-link.dropdown-toggle(data-toggle="dropdown" href="#" role="button")
+          = current_user.display_name
+        .dropdown-menu
+          %a.dropdown-item(href="") Add a New Business
+          %a.dropdown-item(href="") View Profile
+          = link_to "Log Out", logout_path, method: "post", class: "dropdown-item"

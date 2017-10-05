@@ -16,6 +16,8 @@
       .form-group
         = f.submit "Sign up", class: "btn register-button form-control"
   %p
-    %small Already on Yelp? <a href=''>Log in</a>
+    %small
+      Already on Yelp?
+      = link_to "Log In", login_path
 
 
