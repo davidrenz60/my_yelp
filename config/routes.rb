@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
 
-
-  resources :users, only: [:create]
+  resources :businesses, only: [:show]
+  resources :users, only: [:create, :show]
   get 'ui(/:action)', controller: 'ui'
 end

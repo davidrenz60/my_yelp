@@ -1,0 +1,27 @@
+%section.content-header
+  .container
+    %h1= @user.display_name
+    .user-review-count
+      .user-review-logo-large
+      %span.ml-1 #{@user.reviews.count} reviews
+    %p.mt-1
+      %strong Member Since
+      #{display_month_year(@user.created_at)}
+%section.content.user
+  .container
+    %h3 Reviews
+    %ul
+      - @user.reviews.each do |review|
+        %li
+          .row
+            .col-md-3
+              %h5
+                = link_to review.business.name, business_path(review.business)
+              %address
+                #{review.business.address}<br>
+                #{review.business.city}, #{review.business.state} #{review.business.zip_code}<br>
+                #{review.business.phone_number}
+            .col-md-9
+              .star-rating-small.rating-4-small
+              %span.review-date.ml-1= display_date(review.created_at)
+              %p.pt-3= review.body

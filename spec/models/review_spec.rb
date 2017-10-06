@@ -3,6 +3,7 @@ require 'rails_helper'
 describe Review do
   it { should belong_to(:business) }
   it { should validate_presence_of(:body) }
+  it { should belong_to(:user) }
 
   describe '#preview' do
     it 'returns the whole body of the reivew if it is less than 30 words' do

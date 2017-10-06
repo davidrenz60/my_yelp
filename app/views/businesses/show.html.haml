@@ -1,0 +1,29 @@
+%section.content-header
+  .container
+    .row
+      .col-md-9
+        %h1= @business.name
+        .star-rating-large.rating-4-large
+        %span.ml-1 #{@business.reviews.count} reviews
+        %address.mt-3
+          #{@business.address}<br>
+          #{@business.city}, #{@business.state} #{@business.zip_code}<br>
+          #{@business.phone_number}
+      .col-md-3.align-self-center
+        %button.btn.register-button(type="button") Write a Review
+%section.content
+  .container
+    %ul
+      - @business.reviews.each do |review|
+        %li
+          .row
+            .col-md-3
+              %h5
+                = link_to review.user.display_name, user_path(review.user)
+              .user-review-count
+                .user-review-logo
+                %span.ml-1 #{review.user.reviews.count} reviews
+            .col-md-9
+              .star-rating-small.rating-4-small
+              %span.review-date.ml-1= display_date(review.created_at)
+              %p.pt-3= review.body

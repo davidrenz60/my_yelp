@@ -10,7 +10,7 @@
             .col-md-8
               %h4
                 = (idx + 1).to_s + "."
-                = link_to business.name, ""
+                = link_to business.name, business_path(business)
               .star-rating-small.rating-4-small
               %span.ml-1 #{business.reviews.count} reviews
             .col-md-4
@@ -21,6 +21,6 @@
           - if business.reviews.any?
             %p
               = business.reviews.last.preview
-              = link_to "read more", ""
+              = link_to "read more", business_path(business)
           - else
             %p No reviews yet.

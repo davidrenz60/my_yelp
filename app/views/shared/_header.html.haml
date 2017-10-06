@@ -18,5 +18,5 @@
           = current_user.display_name
         .dropdown-menu
           %a.dropdown-item(href="") Add a New Business
-          %a.dropdown-item(href="") View Profile
-          = link_to "Log Out", logout_path, method: "post", class: "dropdown-item"
+          = link_to "View Profile", user_path(current_user), class: "dropdown-item"
+          = link_to "Log Out", logout_path, class: "dropdown-item"
