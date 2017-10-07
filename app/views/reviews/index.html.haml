@@ -1,0 +1,24 @@
+%section.content-header
+  .container
+    %h3 Recent Reviews
+%section.content
+  .container
+    %ul
+      - @reviews.each do |review|
+        %li
+          .row
+            .col-md-3
+              %h4.mt-2
+                = link_to review.business.name, business_path(review.business)
+              .star-rating-small.rating-4-small
+              %span.ml-1
+                = pluralize(review.business.reviews.count, "review")
+              %address
+                = render 'shared/address', obj: review.business
+            .col-md-9
+              .star-rating-small.rating-4-small
+              %span.review-date.ml-1
+                = display_date(review.created_at)
+                by
+                = link_to review.user.display_name, user_path(review.user)
+              %p.pt-3= review.body

@@ -12,12 +12,11 @@
                 = (idx + 1).to_s + "."
                 = link_to business.name, business_path(business)
               .star-rating-small.rating-4-small
-              %span.ml-1 #{business.reviews.count} reviews
+              %span.ml-1
+                = pluralize(business.reviews.count, "review")
             .col-md-4
               %address
-                #{business.address}<br>
-                #{business.city}, #{business.state} #{business.zip_code}<br>
-                #{business.phone_number}
+                = render 'shared/address', obj: business
           - if business.reviews.any?
             %p
               = business.reviews.last.preview

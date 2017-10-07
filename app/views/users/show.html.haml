@@ -3,7 +3,8 @@
     %h1= @user.display_name
     .user-review-count
       .user-review-logo-large
-      %span.ml-1 #{@user.reviews.count} reviews
+      %span.ml-1
+        = pluralize(@user.reviews.count, "review")
     %p.mt-1
       %strong Member Since
       #{display_month_year(@user.created_at)}
@@ -18,9 +19,7 @@
               %h5
                 = link_to review.business.name, business_path(review.business)
               %address
-                #{review.business.address}<br>
-                #{review.business.city}, #{review.business.state} #{review.business.zip_code}<br>
-                #{review.business.phone_number}
+                = render 'shared/address', obj: review.business
             .col-md-9
               .star-rating-small.rating-4-small
               %span.review-date.ml-1= display_date(review.created_at)
