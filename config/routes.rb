@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   resources :reviews, only: [:index]
-  resources :businesses, only: [:show]
+
+  resources :businesses, only: [:show, :new, :create] do
+    resources :reviews, only: [:new, :create]
+  end
+
   resources :users, only: [:create, :show]
   get 'ui(/:action)', controller: 'ui'
 end

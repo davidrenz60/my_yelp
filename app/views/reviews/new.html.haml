@@ -1,0 +1,14 @@
+%section.new-review.container.mt-4
+  %h3 Write a Review
+  %h5
+    = link_to @business.name, business_path(@business.name)
+  %address
+    = render 'shared/address', obj: @business
+  = form_for [@business, @review] do |f|
+    %fieldset
+      .form-group
+        = f.select :rating, (1..5).map { |n| pluralize(n, "Star") }, {}, { class: "form-control w-25" }
+      .form-group
+        = f.text_area :body, class: "form-control", rows: "10", placeholder: "Your review"
+      .form-group
+        = f.submit "Post Review", class: "form-control btn register-button"

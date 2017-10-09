@@ -1,0 +1,18 @@
+%section.container.centered-form.mt-4
+  %h3.mb-4 Add a New Business
+  = form_for @business do |f|
+    %fieldset
+      .form-group
+        = f.text_field :name, class: "form-control", placeholder: "Business Name"
+      .form-group
+        = f.text_field :address, class: "form-control", placeholder: "Address"
+      .form-group
+        = f.text_field :city, class: "form-control", placeholder: "City"
+      .form-group
+        = f.text_field :state, class: "form-control", placeholder: "State"
+      .form-group
+        = f.text_field :zip_code, class: "form-control", placeholder: "Zip Code"
+      .form-group
+        = f.text_field :phone_number, class: "form-control", placeholder: "Phone Number"
+      .form-group
+        = f.submit "Add Business", class: "form-control btn register-button"

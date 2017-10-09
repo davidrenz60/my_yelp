@@ -9,7 +9,7 @@
         %address.mt-3
           = render 'shared/address', obj: @business
       .col-md-3.align-self-center
-        %button.btn.register-button(type="button") Write a Review
+        = link_to "Write a Review", new_business_review_path(@business), class: "btn register-button"
 %section.content
   .container
     %ul

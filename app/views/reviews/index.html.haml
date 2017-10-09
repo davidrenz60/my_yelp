@@ -13,7 +13,7 @@
               .star-rating-small.rating-4-small
               %span.ml-1
                 = pluralize(review.business.reviews.count, "review")
-              %address
+              %address.mt-1
                 = render 'shared/address', obj: review.business
             .col-md-9
               .star-rating-small.rating-4-small

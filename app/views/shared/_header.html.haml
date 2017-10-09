@@ -1,7 +1,7 @@
 %nav
   %ul
     %li
-      %a(href='')
+      = link_to home_path do
         %img(src='/images/logo.png')
     - if logged_in?
       %li
@@ -17,6 +17,6 @@
         %a.nav-link.dropdown-toggle(data-toggle="dropdown" href="#" role="button")
           = current_user.display_name
         .dropdown-menu
-          %a.dropdown-item(href="") Add a New Business
+          = link_to "Add a New Business", new_business_path, class: "dropdown-item"
           = link_to "View Profile", user_path(current_user), class: "dropdown-item"
           = link_to "Log Out", logout_path, class: "dropdown-item"
