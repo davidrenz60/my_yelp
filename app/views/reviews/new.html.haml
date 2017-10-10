@@ -4,10 +4,11 @@
     = link_to @business.name, business_path(@business.name)
   %address
     = render 'shared/address', obj: @business
+  = render 'shared/errors', obj: @review
   = form_for [@business, @review] do |f|
     %fieldset
       .form-group
-        = f.select :rating, (1..5).map { |n| pluralize(n, "Star") }, {}, { class: "form-control w-25" }
+        = f.select :rating, options_for_rating, {}, { class: "form-control" }
       .form-group
         = f.text_area :body, class: "form-control", rows: "10", placeholder: "Your review"
       .form-group

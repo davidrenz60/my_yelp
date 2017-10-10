@@ -1,0 +1,8 @@
+- if obj.errors.any?
+  %div.alert.alert-danger.alert-dismissable.fade.show(role="alert")
+    %button.close(data-dismiss="alert" aria-label="Close")
+      %span(aria-hidden="true") &times;
+    %p Please fix the following errors:
+    %ul.ml-3
+      - obj.errors.full_messages.each do |message|
+        %li= message

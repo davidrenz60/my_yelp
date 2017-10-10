@@ -4,6 +4,12 @@ describe Review do
   it { should belong_to(:business) }
   it { should validate_presence_of(:body) }
   it { should belong_to(:user) }
+  it do
+    should validate_numericality_of(:rating)
+      .is_greater_than_or_equal_to(0)
+      .is_less_than_or_equal_to(5)
+      .only_integer
+  end
 
   describe '#preview' do
     it 'returns the whole body of the reivew if it is less than 30 words' do
