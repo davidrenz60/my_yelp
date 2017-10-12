@@ -3,7 +3,7 @@
     .row
       .col-md-9
         %h1= @business.name
-        .star-rating-large.rating-4-large
+        .rating-large{ class: rating_class(@business.rating) }
         %span.ml-1
           = pluralize(@business.reviews.count, "review")
         %address.mt-3
@@ -24,6 +24,6 @@
                 %span.ml-1
                   = pluralize(review.user.reviews.count, "review")
             .col-md-9
-              .star-rating-small.rating-4-small
+              .rating-large{ class: rating_class(review.rating) }
               %span.review-date.ml-1= display_date(review.created_at)
               %p.pt-3= review.body

@@ -3,12 +3,24 @@ require 'rails_helper'
 describe BusinessesController do
   describe "GET index" do
     context 'with authenticated user' do
+      before { set_current_user }
+
       it 'sets @business' do
-        set_current_user
-        saison = Fabricate(:business)
-        french_laundry = Fabricate(:business)
+        saison = Fabricate(:business, name: "saison")
+        french_laundry = Fabricate(:business, name: "French Laundry")
         get :index
-        expect(assigns(:businesses)).to eq([saison, french_laundry])
+        expect(assigns(:businesses)).to include(saison, french_laundry)
+      end
+
+
+      it "orders the businesses by rating from highest to lowest" do
+        saison = Fabricate(:business, name: "Saison")
+        french_laundry = Fabricate(:business, name: "French Laundry")
+        Fabricate(:review, business: french_laundry, rating: 5)
+        Fabricate(:review, business: saison, rating: 1)
+        get :index
+
+        expect(assigns(:businesses)).to eq([french_laundry, saison])
       end
     end
 

@@ -18,9 +18,12 @@
             .col-md-3
               %h5
                 = link_to review.business.name, business_path(review.business)
+              .rating-small{ class: rating_class(review.business.rating) }
+              %span.ml-1
+                = pluralize(review.business.reviews.count, "review")
               %address
                 = render 'shared/address', obj: review.business
             .col-md-9
-              .star-rating-small.rating-4-small
+              .rating-small{ class: rating_class(review.rating) }
               %span.review-date.ml-1= display_date(review.created_at)
               %p.pt-3= review.body

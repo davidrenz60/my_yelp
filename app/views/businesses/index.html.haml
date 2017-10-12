@@ -11,7 +11,7 @@
               %h4
                 = (idx + 1).to_s + "."
                 = link_to business.name, business_path(business)
-              .star-rating-small{ class: rating_class(business.rating, "small")}
+              .rating-small{ class: rating_class(business.rating) }
               %span.ml-1
                 = pluralize(business.reviews.count, "review")
             .col-md-4

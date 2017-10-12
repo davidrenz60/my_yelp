@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe Business do
+
   it { should have_many(:reviews).order(created_at: :desc) }
   it { should belong_to(:creator).class_name('User').with_foreign_key('user_id') }
   it { should validate_presence_of(:name) }
@@ -13,8 +14,8 @@ describe Business do
   describe "#rating" do
     let(:business) { Fabricate(:business) }
 
-    it "returns nil if there are no reviews" do
-      expect(business.rating).to be_nil
+    it "returns 0 if there are no reviews" do
+      expect(business.rating).to eq(0)
     end
 
     it "retuns the average rating of the business" do

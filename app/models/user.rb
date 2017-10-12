@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
-  has_many :reviews
+  has_many :reviews, -> { order(created_at: :desc) }
   validates_presence_of :first_name, :last_name, :email
   validates_uniqueness_of :email
 

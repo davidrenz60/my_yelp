@@ -2,7 +2,7 @@ class BusinessesController < ApplicationController
   before_action :require_user
 
   def index
-    @businesses = Business.all
+    @businesses = Business.all.sort_by(&:rating).reverse
   end
 
   def show
