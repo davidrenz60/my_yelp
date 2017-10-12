@@ -9,4 +9,25 @@ describe Business do
   it { should validate_presence_of(:state) }
   it { should validate_presence_of(:zip_code) }
   it { should validate_presence_of(:phone_number) }
+
+  describe "#rating" do
+    let(:business) { Fabricate(:business) }
+
+    it "returns nil if there are no reviews" do
+      expect(business.rating).to be_nil
+    end
+
+    it "retuns the average rating of the business" do
+      Fabricate(:review, business: business, rating: 4)
+      Fabricate(:review, business: business, rating: 2)
+      expect(business.rating).to eq(3.0)
+    end
+
+    it "retuns the average rating rounded to the nearest 0.5" do
+      Fabricate(:review, business: business, rating: 4)
+      Fabricate(:review, business: business, rating: 3)
+      Fabricate(:review, business: business, rating: 1)
+      expect(business.rating).to eq(2.5)
+    end
+  end
 end
