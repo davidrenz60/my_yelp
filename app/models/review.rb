@@ -8,7 +8,15 @@ class Review < ActiveRecord::Base
     less_than_or_equal_to: 5
   }
 
+  after_save :update_business_rating
+
   def preview
     body.truncate_words(30)
+  end
+
+  private
+
+  def update_business_rating
+    business.update_rating
   end
 end

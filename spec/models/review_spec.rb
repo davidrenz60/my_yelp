@@ -23,4 +23,13 @@ describe Review do
       expect(review.preview).to eq("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mattis mauris ut tellus faucibus finibus. Nam fermentum enim ac dui tincidunt, vel laoreet augue lobortis. Praesent sit amet malesuada nunc...")
     end
   end
+
+  describe '#update_business_rating' do
+    it 'calls update_business_rating when review is saved' do
+      business = Fabricate(:business)
+      review = Fabricate.build(:review, business: business)
+      expect(review).to receive(:update_business_rating)
+      review.save
+    end
+  end
 end

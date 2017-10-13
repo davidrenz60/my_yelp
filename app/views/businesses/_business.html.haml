@@ -1,0 +1,18 @@
+%li
+  .row
+    .col-md-8
+      %h4
+        = (idx + 1).to_s + "."
+        = link_to business.name, business_path(business)
+      .rating-small{ class: rating_class(business.rating) }
+      %span.ml-1
+        = pluralize(business.reviews.count, "review")
+    .col-md-4
+      %address
+        = render 'shared/address', obj: business
+  - if business.reviews.any?
+    %p
+      = business.reviews.last.preview
+      = link_to "read more", business_path(business)
+  - else
+    %p No reviews yet.

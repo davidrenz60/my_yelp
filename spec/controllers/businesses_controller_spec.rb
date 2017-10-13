@@ -11,17 +11,6 @@ describe BusinessesController do
         get :index
         expect(assigns(:businesses)).to include(saison, french_laundry)
       end
-
-
-      it "orders the businesses by rating from highest to lowest" do
-        saison = Fabricate(:business, name: "Saison")
-        french_laundry = Fabricate(:business, name: "French Laundry")
-        Fabricate(:review, business: french_laundry, rating: 5)
-        Fabricate(:review, business: saison, rating: 1)
-        get :index
-
-        expect(assigns(:businesses)).to eq([french_laundry, saison])
-      end
     end
 
     it_behaves_like "require sign in" do
@@ -102,6 +91,27 @@ describe BusinessesController do
 
     it_behaves_like "require sign in" do
       let(:action) { post :create }
+    end
+  end
+
+  describe "GET search" do
+    context "with authenticated user" do
+      before { set_current_user }
+      let(:business) { Fabricate(:business) }
+
+      it "sets @search_term" do
+        get :search, params: { search_term: business.name }
+        expect(assigns(:search_term)).to eq(business.name)
+      end
+
+      it "sets @businesses"  do
+        get :search, params: { search_term: business.name }
+        expect(assigns(:businesses)).to eq([business])
+      end
+    end
+
+    it_behaves_like "require sign in" do
+      let(:action) { get :search }
     end
   end
 end

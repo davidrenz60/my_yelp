@@ -2,7 +2,7 @@ class BusinessesController < ApplicationController
   before_action :require_user
 
   def index
-    @businesses = Business.all.sort_by(&:rating).reverse
+    @businesses = Business.all
   end
 
   def show
@@ -23,6 +23,11 @@ class BusinessesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def search
+    @search_term = params[:search_term]
+    @businesses = Business.search_by_name(@search_term)
   end
 
   private

@@ -5,9 +5,9 @@
         %img(src='/images/logo.png')
     - if logged_in?
       %li
-        %form.form-inline
-          %input.form-control.search-bar(type="text" placeholder="Find")
-          %button.btn.search-button(type="submit")
+        = form_tag search_businesses_path, method: 'get', class: "form-inline" do
+          = text_field_tag :search_term, nil, placeholder: "Find", class: "form-control search-bar"
+          = button_tag(type: "submit", class: "btn search-button") do
             %i.fa.fa-search
       %li
         = link_to "Businesses", home_path
