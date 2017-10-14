@@ -26,7 +26,6 @@ class BusinessesController < ApplicationController
   end
 
   def search
-    @search_term = params[:search_term]
     @businesses = Business.search_by_name(@search_term)
   end
 

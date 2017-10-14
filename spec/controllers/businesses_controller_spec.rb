@@ -99,11 +99,6 @@ describe BusinessesController do
       before { set_current_user }
       let(:business) { Fabricate(:business) }
 
-      it "sets @search_term" do
-        get :search, params: { search_term: business.name }
-        expect(assigns(:search_term)).to eq(business.name)
-      end
-
       it "sets @businesses"  do
         get :search, params: { search_term: business.name }
         expect(assigns(:businesses)).to eq([business])

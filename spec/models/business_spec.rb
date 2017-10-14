@@ -45,6 +45,12 @@ describe Business do
       expect(Business.search_by_name("French")).to eq([french_laundry])
     end
 
+    it "searches case indifferent" do
+      saison = Fabricate(:business, name: "Saison")
+      Fabricate(:business, name: "French Laundry")
+      expect(Business.search_by_name("saison")).to eq([saison])
+    end
+
     it "returns an empty array when search is an empty string" do
       Fabricate(:business, name: "Saison")
       Fabricate(:business, name: "French Laundry")

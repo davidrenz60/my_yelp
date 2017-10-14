@@ -7,7 +7,7 @@ class Business < ActiveRecord::Base
 
   def self.search_by_name(name)
     return [] if name.blank?
-    Business.where("NAME LIKE ?", "%#{name}%")
+    Business.where("LOWER(NAME) LIKE ?", "%#{name.downcase}%")
   end
 
   def update_rating
