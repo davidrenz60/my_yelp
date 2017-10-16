@@ -12,12 +12,12 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'bcrypt', '~> 3.1.7'
+gem 'faker'
+gem 'fabrication'
 
 group :development, :test do
   gem 'pry'
   gem 'rspec-rails'
-  gem 'faker'
-  gem 'fabrication'
 end
 
 group :development do
