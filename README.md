@@ -1,24 +1,29 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A practice project using Rails and TDD process for development
 
-Things you may want to cover:
+Requirements:
 
-* Ruby version
+* User can see a list of businesses (yelp currently doesn't have this page, but we'll build it anyway)
 
-* System dependencies
+* User can add a business
 
-* Configuration
+* User Registration -  Sign Up
 
-* Database creation
+* User Registration -  Sign in and Sign Out
 
-* Database initialization
+*  User can see a list of recent reviews
 
-* How to run the test suite
+* User can review a business (add a new review)
 
-* Services (job queues, cache servers, search engines, etc.)
+* User can see another user's profile page - also shows this user's past reviews
 
-* Deployment instructions
+Extras:
 
-* ...
+* orders businesses by average ratings
+
+* star ratings are shown graphically - similar to yelp
+
+* search businesses by name
+
+
