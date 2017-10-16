@@ -3,13 +3,13 @@ require 'rails_helper'
 describe BusinessesController do
   describe "GET index" do
     context 'with authenticated user' do
-      before { set_current_user }
+      let!(:saison) { Fabricate(:business, name: "saison") }
+      let!(:french_laundry) { Fabricate(:business, name: "French Laundry") }
 
-      it 'sets @business' do
-        saison = Fabricate(:business, name: "saison")
-        french_laundry = Fabricate(:business, name: "French Laundry")
+      it 'sets @businesses' do
+        set_current_user
         get :index
-        expect(assigns(:businesses)).to include(saison, french_laundry)
+        expect(assigns(:businesses)).to include(french_laundry, saison)
       end
     end
 
@@ -20,9 +20,10 @@ describe BusinessesController do
 
   describe "GET show" do
     context "with authenticated user" do
+      let(:business) { Fabricate(:business) }
+
       it "sets @business" do
         set_current_user
-        business = Fabricate(:business)
         get :show, params: { id: business.id }
         expect(assigns(:business)).to eq(business)
       end
@@ -96,10 +97,10 @@ describe BusinessesController do
 
   describe "GET search" do
     context "with authenticated user" do
-      before { set_current_user }
       let(:business) { Fabricate(:business) }
 
-      it "sets @businesses"  do
+      it "sets @businesses" do
+        set_current_user
         get :search, params: { search_term: business.name }
         expect(assigns(:businesses)).to eq([business])
       end

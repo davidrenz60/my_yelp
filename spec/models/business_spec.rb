@@ -11,8 +11,8 @@ describe Business do
   it { should validate_presence_of(:phone_number) }
 
   describe "default scope" do
-    let(:saison) { Fabricate(:business, name: "saison") }
-    let(:french_laundry) { Fabricate(:business, name: "French Laundry") }
+    let!(:saison) { Fabricate(:business, name: "saison") }
+    let!(:french_laundry) { Fabricate(:business, name: "French Laundry") }
 
     it 'orders the businesses by rating highest to lowest' do
       Fabricate(:review, business: saison, rating: 1)
@@ -27,33 +27,26 @@ describe Business do
   end
 
   describe ".search_by_name" do
+    let!(:saison) { Fabricate(:business, name: "Saison") }
+    let!(:french_laundry) { Fabricate(:business, name: "French Laundry") }
+
     it "returns an empty array when no results are found" do
-      Fabricate(:business, name: "Saison")
-      Fabricate(:business, name: "French Laundry")
       expect(Business.search_by_name("Acquerello")).to eq([])
     end
 
     it "returns an array of businesses when name is matched" do
-      saison = Fabricate(:business, name: "Saison")
-      Fabricate(:business, name: "French Laundry")
       expect(Business.search_by_name("Saison")).to eq([saison])
     end
 
     it "returns an array of businesses when name is partially matched" do
-      french_laundry = Fabricate(:business, name: "French Laundry")
-      Fabricate(:business, name: "Saison")
       expect(Business.search_by_name("French")).to eq([french_laundry])
     end
 
     it "searches case indifferent" do
-      saison = Fabricate(:business, name: "Saison")
-      Fabricate(:business, name: "French Laundry")
       expect(Business.search_by_name("saison")).to eq([saison])
     end
 
     it "returns an empty array when search is an empty string" do
-      Fabricate(:business, name: "Saison")
-      Fabricate(:business, name: "French Laundry")
       expect(Business.search_by_name("")).to eq([])
     end
   end

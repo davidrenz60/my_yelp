@@ -1,28 +1,16 @@
 require 'rails_helper'
 
 feature "User adds a business" do
-  scenario "with valid input" do
-    business_params = Fabricate.attributes_for(:business)
+  let(:business_params) { Fabricate.attributes_for(:business) }
 
+  scenario "with valid input" do
     sign_in
-    find("a[href='/businesses/new']").click
+    visit new_business_path
 
     fill_in_new_business_form(business_params)
     add_business
 
     expect(page).to have_content(business_params[:name])
-  end
-
-  scenario "with invalid input" do
-    business_params = { name: "Testing" }
-
-    sign_in
-    find("a[href='/businesses/new']").click
-
-    fill_in_new_business_form(business_params)
-    add_business
-
-    expect(page).to have_content("Add a New Business")
   end
 
   def fill_in_new_business_form(params)

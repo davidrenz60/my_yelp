@@ -10,14 +10,15 @@ describe User do
   it { should validate_uniqueness_of(:email) }
 
   describe "#display_name" do
+    let(:jon) { Fabricate(:user, first_name: "Jon", last_name: "Doe") }
+    let(:alice) { Fabricate(:user, first_name: "alice", last_name: "smith") }
+
     it "returns the first name and the first initial of the last name followed by a period" do
-      user = Fabricate(:user, first_name: "Jon", last_name: "Doe")
-      expect(user.display_name).to eq("Jon D.")
+      expect(jon.display_name).to eq("Jon D.")
     end
 
     it "capitalizes the first name and last name inital" do
-      user = Fabricate(:user, first_name: "jon", last_name: "doe")
-      expect(user.display_name).to eq("Jon D.")
+      expect(alice.display_name).to eq("Alice S.")
     end
   end
 end
