@@ -10,19 +10,19 @@ describe Business do
   it { should validate_presence_of(:zip_code) }
   it { should validate_presence_of(:phone_number) }
 
-  describe "default scope" do
+  describe ".order_by_rating" do
     let!(:saison) { Fabricate(:business, name: "saison") }
     let!(:french_laundry) { Fabricate(:business, name: "French Laundry") }
 
     it 'orders the businesses by rating highest to lowest' do
       Fabricate(:review, business: saison, rating: 1)
       Fabricate(:review, business: french_laundry, rating: 4)
-      expect(Business.all).to eq([french_laundry, saison])
+      expect(Business.order_by_rating(Business.all)).to eq([french_laundry, saison])
     end
 
     it 'puts businesses with no reviews last' do
       Fabricate(:review, business: saison, rating: 4)
-      expect(Business.all).to eq([saison, french_laundry])
+      expect(Business.order_by_rating(Business.all)).to eq([saison, french_laundry])
     end
   end
 

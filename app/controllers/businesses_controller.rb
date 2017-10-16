@@ -2,7 +2,7 @@ class BusinessesController < ApplicationController
   before_action :require_user
 
   def index
-    @businesses = Business.all
+    @businesses = Business.order_by_rating(Business.all)
   end
 
   def show
@@ -26,7 +26,8 @@ class BusinessesController < ApplicationController
   end
 
   def search
-    @businesses = Business.search_by_name(params[:search_term])
+    results = Business.search_by_name(params[:search_term])
+    @businesses = Business.order_by_rating(results)
   end
 
   private

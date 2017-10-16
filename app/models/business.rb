@@ -1,5 +1,4 @@
 class Business < ActiveRecord::Base
-  default_scope { order('rating DESC NULLS LAST') }
   has_many :reviews, -> { order(created_at: :desc) }
   belongs_to :creator, class_name: "User", foreign_key: "user_id"
 
@@ -8,6 +7,10 @@ class Business < ActiveRecord::Base
   def self.search_by_name(name)
     return [] if name.blank?
     Business.where("LOWER(NAME) LIKE ?", "%#{name.downcase}%")
+  end
+
+  def self.order_by_rating(businesses)
+    businesses.order("rating DESC NULLS LAST")
   end
 
   def update_rating
